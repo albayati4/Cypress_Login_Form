@@ -11,8 +11,16 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
-Cypress.Commands.add("IsDisplayed", (locator) => {
+Cypress.Commands.add("isDisplayed", (locator) => {
   cy.get(locator).should("be.visible");
+});
+
+Cypress.Commands.add("required", (locator, isRequired) => {
+  if (isRequired) {
+    cy.get(locator).should("have.attr", "required");
+  } else {
+    cy.get(locator).should("not.have.attr", "required");
+  }
 });
 //
 // -- This is a child command --
